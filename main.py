@@ -93,7 +93,6 @@ def roll(user):
     else:
         chosenName = db_users.get(get.participant == user)['chosen']
         return chosenName
-roll('Szymon Pietrowski')
 
 def tillChristmas():
     current_year = datetime.now().year
