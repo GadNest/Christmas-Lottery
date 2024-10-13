@@ -60,8 +60,8 @@ def roll(user):
     if db_users.get(get.participant == user)['chosen'] == '':
         lotteryPool = db_users.search(get.inLotteryPool == True)
         if len(lotteryPool) < 3:
-            leftover = db_users.search((get.chosen == '') & (get.participant != user))
-            if leftover != None:
+            leftover = db_users.search((get.chosen == '') & (get.inLottery == True) & (get.participant != user))
+            if len(leftover) > 0:
                 chosenName = leftover[0]['participant']
                 db_users.update({'chosen': chosenName}, get.participant == user)
                 db_users.update({'inLotteryPool': False}, get.participant == chosenName)
@@ -93,6 +93,7 @@ def roll(user):
     else:
         chosenName = db_users.get(get.participant == user)['chosen']
         return chosenName
+roll('Szymon Pietrowski')
 
 def tillChristmas():
     current_year = datetime.now().year
