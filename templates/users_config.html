@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Config</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <div class="buttons-header-right">
+        <form action='/lottery' method="POST">
+            <button class="button" name="action" value="logout" type="submit">WYLOGUJ</button>
+        </form>
+    </div>
+</head>
+<body>
+<header>
+    <h1>Konfiguracja bazy uczestników</h1>
+</header>
+    <div class="content-left">
+            <p>Dodaj</p>
+        <form action='/users_config' method="POST">
+            <input type="text" id='add_participant' name="inputName" placeholder="Dodaj uczestnika do bazy">
+            <p></p>
+            <button class="button" name="action" value="add" type="submit">Dodaj</button>
+        </form>
+        <p>Usuń</p>
+        <form action='/users_config' method="POST">
+            <input type="text" id='remove_participant' name="inputName" placeholder="Usuń uczestnika z bazy">
+            <p></p>
+            <button class="button" name="action" value="remove" type="submit">Usuń</button>
+        </form>
+        <p></p>
+        <form action='/users_config' method="POST">
+            <button class="button" name="action" value="clear" type="submit">Wyczyść bazę</button>
+        </form>
+    </div>
+    <div class="content-center">
+        {% if result %}
+            <p>{{result}}</p>
+        {% endif %}
+    </div>
+    <div class="content-center">
+        <p>Uczestnicy losowania:</p>
+        <p  style="white-space: pre-line;">{{ added_users }}</p>
+    </div>
+</body>
+</html>

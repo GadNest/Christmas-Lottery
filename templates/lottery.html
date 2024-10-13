@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmass app</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="css/images/favicon.ico">
+    <div class="buttons-header-right">
+        <form action='/lottery' method="POST">
+            <button class="button" name="action" value="logout" type="submit">WYLOGUJ</button>
+        </form>
+    </div>
+</head>
+<body>
+<header>
+    <h1>Loteria Świąteczna</h1>
+</header>
+<div class = content-left>
+    <p></p>
+</div>
+<div class = content-center1>
+    <p>Witaj {{response}}! Nadeszła kolejna edycja Świątecznej loterii prezentów.</p>
+    <p>Do wigilii zostało {{remainingDays}} dni!</p>
+    {% if factor %}
+        <p>Osoba, którą wylosowałeś to {{chosen}}!</p>
+    {% else %}
+        <p>Wylosuj osobę, której kupisz prezent!</p>
+        <form action='/lottery' method="POST">
+            <button class="button" name="action" value="roll" type="submit">LOSUJ</button>
+        </form>
+    {% endif %}
+</div>
+</body>
+</html>

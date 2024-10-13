@@ -1,0 +1,101 @@
+body{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	color: white;
+    background-color: black;
+    background-image: url('/css/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+	margin: 6mm;
+}
+header {
+    text-align: center;
+    padding: 10px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+.buttons {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.buttons-header-right {
+    text-align: center;
+    margin: 0 10px;
+    float: right;
+}
+
+.buttons-header-left {
+    text-align: center;
+    margin-top: 10px;
+    float: left;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 60px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: red;
+}
+
+.response {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f0f0f0;
+}
+
+.content-left, .content-right, .content-center {
+    display: inline-block;  /* Wyświetlamy formularze w jednej linii */
+    vertical-align: top;    /* Ustawiamy pionowe wyrównanie */
+    margin: 10px;           /* Dodajemy odstęp między formularzami */
+}
+
+.content-left {
+    float: left;  /* Formularz po lewej stronie */
+    width: 20%
+    text-align: center;  /* tekst po środku */
+    background-color: rgba(0, 0, 0, 0.5); /* Czerwony z 50% przezroczystością */
+    padding: 10px; /* Ustawia wewnętrzne odstępy w elemencie */
+}
+
+.content-right {
+    float: right;  /* Formularz po prawej stronie */
+    background-color: rgba(0, 0, 0, 0.5); /* Czerwony z 50% przezroczystością */
+    padding: 10px; /* Ustawia wewnętrzne odstępy w elemencie */
+}
+.content-center {
+    float: none;
+    width: 80%;      /* lub inna stała szerokość */
+    margin: 0 auto;  /* Wyśrodkowanie poziome */
+    text-align: center;  /* Formularz po środku */
+}
+
+.content-center1 {
+    float: none;
+    width: 100%;      /* lub inna stała szerokość */
+    margin: 0 auto;  /* Wyśrodkowanie poziome */
+    text-align: center;  /* Formularz po środku */
+}
+
+
+input {
+    padding: 10px;
+    width: 250px;
+    margin-top: 10px;
+}
