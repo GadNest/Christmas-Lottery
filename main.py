@@ -6,27 +6,35 @@ db_users = TinyDB('db_users.json')
 
 
 def ifExists(name):
-    q = Query()
-    existing = db_users.search(q.participant == name)
+    get = Query()
+    existing = db_users.search(get.participant == name)
+    if existing:
+        return True
+    else:
+        return False
+def ifLoginExists(login):
+    get = Query()
+    existing = db_users.search(get.login == login)
     if existing:
         return True
     else:
         return False
 
 def addUser(name):
-    ifExists(name)
     if not ifExists(name):
         if name == "":
             return "Wprowadź nazwę uczestnika"
         elif name == "admin":
             max_id = max([entry.get('id', 0) for entry in db_users.all()], default=0)
             db_users.insert(
-                {'participant': name, 'id': 0, 'password': 'admin2101',
+                {'participant': name, 'login': name, 'id': 0, 'password': 'admin2101',
                  'inLotteryPool': False, 'chosen': 'Yes'})
             return f'Uczestnik {name} został dodany do bazy'
         else:
+            parts = name.lower().split()
+            login = f"{parts[0][0:3]}{parts[1][0:3]}"
             max_id = max([entry.get('id', 0) for entry in db_users.all()], default=0)
-            db_users.insert({'participant': name, 'id': max_id+1, 'password': 'wigilia'+str(random.randint(1000, 9999)), 'inLotteryPool': True, 'chosen': ''})
+            db_users.insert({'participant': name, 'login': login, 'id': max_id+1, 'password': 'wigilia'+str(random.randint(1000, 9999)), 'inLotteryPool': True, 'chosen': ''})
             return f'Uczestnik {name} został dodany do bazy'
     else:
         return (f'ERROR: Uczestnik {name} istnieje już w bazie danych')
@@ -43,8 +51,8 @@ def removeUser(name):
 def clearDatabase():
     db_users.truncate()
     db_users.insert(
-        {'participant': 'admin', 'id': 0, 'password': 'admin2101',
-         'rolled': True, 'chosen': 'Yes'})
+        {'participant': 'admin', 'login': 'admin', 'id': 0, 'password': 'admin2101',
+         'inLotteryPool': False, 'chosen': 'Yes'})
 
 
 

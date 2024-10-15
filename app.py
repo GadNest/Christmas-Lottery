@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, flash, redirect
-from main import addUser, addedUsers, removeUser, clearDatabase, tillChristmas, roll
+from main import addUser, addedUsers, removeUser, clearDatabase, tillChristmas, roll, ifLoginExists
 from flask_session import Session
 from tinydb import TinyDB, Query
 
@@ -28,21 +28,25 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        login = request.form['login']
         password = request.form['password']
         # Sprawdzanie użytkownika w bazie TinyDB
         get = Query()
-        user = db_users.get(get.participant == username)
-        if user and user['password'] == password:
-            # Zapisanie użytkownika w sesji
-            session['username'] = username
-            if username == 'admin':
-                return redirect('/users_config')
-            else:
-                return redirect('/lottery')
-        else:
+        if not ifLoginExists(login):
             response = 'Niepoprawna nazwa użytkownika lub hasło'
             return render_template('login.html', result=response)
+        else:
+            user = db_users.get(get.login == login)
+            username = db_users.get(get.login == login)['participant']
+            if user and user['password'] == password:
+                session['username'] = username
+                if session['username'] == 'admin':
+                    return redirect('/users_config')
+                else:
+                    return redirect('/lottery')
+            else:
+                response = 'Niepoprawna nazwa użytkownika lub hasło'
+                return render_template('login.html', result=response)
     else:
         return render_template('login.html')
 
